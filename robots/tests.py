@@ -2,6 +2,7 @@ import json
 
 from django.test import TestCase
 from django.urls import reverse
+
 from robots.constants import ERROR_FUTURE_DATE, ERROR_INVALID_DATA
 from robots.models import Robot
 
@@ -22,11 +23,7 @@ class RobotCreateViewTest(TestCase):
         - Возвращается сообщение "Robot created".
         - Робот корректно сохраняется в базе данных.
         """
-        data = {
-            "model": "AB",
-            "version": "01", "created":
-            "2024-12-16 10:00:00"
-        }
+        data = {"model": "AB", "version": "01", "created": "2024-12-16 10:00:00"}
         response = self.client.post(
             self.url, json.dumps(data), content_type="application/json"
         )
@@ -45,10 +42,7 @@ class RobotCreateViewTest(TestCase):
         - Ответ имеет статус 400.
         - Возвращается ошибка с текстом ERROR_INVALID_DATA.
         """
-        data = {
-            "model": "AB",
-            "version": "01"
-        }
+        data = {"model": "AB", "version": "01"}
         response = self.client.post(
             self.url, json.dumps(data), content_type="application/json"
         )
@@ -78,11 +72,7 @@ class RobotCreateViewTest(TestCase):
         - Ответ имеет статус 400.
         - Возвращается ошибка с текстом ERROR_FUTURE_DATE.
         """
-        data = {
-            "model": "AB",
-            "version": "01",
-            "created": "2026-12-16 10:00:00"
-        }
+        data = {"model": "AB", "version": "01", "created": "2026-12-16 10:00:00"}
         response = self.client.post(
             self.url, json.dumps(data), content_type="application/json"
         )
@@ -99,12 +89,14 @@ class RobotCreateViewTest(TestCase):
         """
         response = self.client.post(
             "/robots/create/",
-            data=json.dumps({
-                "serial": "invalid-serial",
-                "model": "AB",
-                "version": "12",
-                "created": "2023-01-01T12:00:00Z",
-            }),
+            data=json.dumps(
+                {
+                    "serial": "invalid-serial",
+                    "model": "AB",
+                    "version": "12",
+                    "created": "2023-01-01T12:00:00Z",
+                }
+            ),
             content_type="application/json",
         )
         self.assertEqual(response.status_code, 400)

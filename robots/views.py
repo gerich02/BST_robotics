@@ -1,9 +1,12 @@
 import json
 from datetime import datetime
 
-from django.http import JsonResponse
+from django.db.models import Count
+from django.http import HttpResponse, JsonResponse
 from django.utils.timezone import make_aware, now
 from django.views import View
+from openpyxl import Workbook
+
 from robots.constants import (ERROR_FUTURE_DATE, ERROR_INVALID_DATA,
                               ERROR_INVALID_JSON)
 from robots.models import Robot
@@ -63,3 +66,57 @@ class RobotCreateView(View):
             return JsonResponse({"message": "Robot created"}, status=201)
         except json.JSONDecodeError:
             return JsonResponse({"error": ERROR_INVALID_JSON}, status=400)
+
+
+class ExportToExcelView(View):
+    """
+    Представление для экспорта данных о роботах в Excel файл.
+
+    Обрабатывает GET-запросы для создания Excel файла с данными о роботах.
+    Для каждой модели робота создаётся отдельный лист в файле, где указаны
+    её версия и количество роботов. В случае успешного выполнения возвращает
+    файл с расширением .xlsx.
+
+    Методы:
+        get: Генерирует и отправляет файл Excel с данными о роботах.
+    """
+
+    def get(self, request, *args, **kwargs):
+        """
+        Экспортирует данные о роботах в Excel файл.
+
+        Принимает запрос и генерирует Excel файл с несколькими листами.
+        Каждый лист содержит информацию о роботах для одной модели,
+        сгруппированную по версиям. В каждом листе указаны следующие данные:
+            - Model (str): Модель робота.
+            - Version (str): Версия робота.
+            - Count (int): Количество роботов данной модели и версии.
+
+        Возвращает:
+            - 200: Если файл успешно создан и отправлен для скачивания.
+            - 500: В случае ошибки при генерации файла.
+        """
+        robots = Robot.objects.values(
+            "model",
+            "version"
+        ).annotate(count=Count("id"))
+        wb = Workbook()
+        models = set(robot["model"] for robot in robots)
+        for model in models:
+            ws = wb.create_sheet(title=model)
+            ws.append(["Model", "Version", "Count"])
+            model_robots = [
+                robot for robot in robots if robot["model"] == model
+            ]
+            for robot in model_robots:
+                ws.append([robot["model"], robot["version"], robot["count"]])
+        wb.remove(wb["Sheet"])
+        response = HttpResponse(
+            content_type=(
+                "application/vnd.openxmlformats-officedocument."
+                "spreadsheetml.sheet"
+            )
+        )
+        response["Content-Disposition"] = "attachment; filename=robots_rp.xlsx"
+        wb.save(response)
+        return response

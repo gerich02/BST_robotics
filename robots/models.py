@@ -65,10 +65,7 @@ class Robot(models.Model):
             MaxLengthValidator(VERSION_MAX_LENGTH),
         ],
     )
-    created = models.DateTimeField(
-        blank=False,
-        null=False
-    )
+    created = models.DateTimeField(blank=False, null=False)
 
     def save(self, *args, **kwargs):
         self.full_clean()
