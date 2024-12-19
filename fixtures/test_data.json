@@ -1,0 +1,228 @@
+[
+    {
+      "model": "robots.robot",
+      "pk": 1,
+      "fields": {
+        "serial": "AB-01",
+        "model": "AB",
+        "version": "01",
+        "created": "2024-12-17T12:00:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 2,
+      "fields": {
+        "serial": "AB-02",
+        "model": "AB",
+        "version": "02",
+        "created": "2024-12-17T12:05:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 3,
+      "fields": {
+        "serial": "AB-03",
+        "model": "AB",
+        "version": "03",
+        "created": "2024-12-17T12:10:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 4,
+      "fields": {
+        "serial": "CD-01",
+        "model": "CD",
+        "version": "01",
+        "created": "2024-12-17T12:15:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 5,
+      "fields": {
+        "serial": "CD-02",
+        "model": "CD",
+        "version": "02",
+        "created": "2024-12-17T12:20:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 6,
+      "fields": {
+        "serial": "CD-03",
+        "model": "CD",
+        "version": "03",
+        "created": "2024-12-17T12:25:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 7,
+      "fields": {
+        "serial": "EF-01",
+        "model": "EF",
+        "version": "01",
+        "created": "2024-12-17T12:30:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 8,
+      "fields": {
+        "serial": "EF-02",
+        "model": "EF",
+        "version": "02",
+        "created": "2024-12-17T12:35:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 9,
+      "fields": {
+        "serial": "EF-03",
+        "model": "EF",
+        "version": "03",
+        "created": "2024-12-17T12:40:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 10,
+      "fields": {
+        "serial": "GH-01",
+        "model": "GH",
+        "version": "01",
+        "created": "2024-12-17T12:45:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 11,
+      "fields": {
+        "serial": "GH-02",
+        "model": "GH",
+        "version": "02",
+        "created": "2024-12-17T12:50:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 12,
+      "fields": {
+        "serial": "GH-03",
+        "model": "GH",
+        "version": "03",
+        "created": "2024-12-17T12:55:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 13,
+      "fields": {
+        "serial": "IJ-01",
+        "model": "IJ",
+        "version": "01",
+        "created": "2024-12-17T13:00:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 14,
+      "fields": {
+        "serial": "IJ-02",
+        "model": "IJ",
+        "version": "02",
+        "created": "2024-12-17T13:05:00Z"
+      }
+    },
+    {
+      "model": "robots.robot",
+      "pk": 15,
+      "fields": {
+        "serial": "IJ-03",
+        "model": "IJ",
+        "version": "03",
+        "created": "2024-12-17T13:10:00Z"
+      }
+    },
+    {
+      "model": "customers.customer",
+      "pk": 1,
+      "fields": {
+        "email": "customer1@example.com"
+      }
+    },
+    {
+      "model": "customers.customer",
+      "pk": 2,
+      "fields": {
+        "email": "customer2@example.com"
+      }
+    },
+    {
+      "model": "customers.customer",
+      "pk": 3,
+      "fields": {
+        "email": "customer3@example.com"
+      }
+    },
+    {
+      "model": "customers.customer",
+      "pk": 4,
+      "fields": {
+        "email": "customer4@example.com"
+      }
+    },
+    {
+      "model": "customers.customer",
+      "pk": 5,
+      "fields": {
+        "email": "customer5@example.com"
+      }
+    },
+    {
+      "model": "orders.order",
+      "pk": 1,
+      "fields": {
+        "customer": 1,
+        "robot_serial": "AB-01"
+      }
+    },
+    {
+      "model": "orders.order",
+      "pk": 2,
+      "fields": {
+        "customer": 2,
+        "robot_serial": "CD-01"
+      }
+    },
+    {
+      "model": "orders.order",
+      "pk": 3,
+      "fields": {
+        "customer": 3,
+        "robot_serial": "EF-01"
+      }
+    },
+    {
+      "model": "orders.order",
+      "pk": 4,
+      "fields": {
+        "customer": 4,
+        "robot_serial": "GH-01"
+      }
+    },
+    {
+      "model": "orders.order",
+      "pk": 5,
+      "fields": {
+        "customer": 5,
+        "robot_serial": "IJ-01"
+      }
+    }
+  ]
+  
